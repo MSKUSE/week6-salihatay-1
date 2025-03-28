@@ -1,36 +1,28 @@
-public class Rectangle {
+import javax.management.ValueExp;
 
-    private Point topLeft;
+public class Rectangle extends Shape{
+
+
     private int sideA , sideB;
+    public static int counter = 0;
+    public int counterforobject = 0;
 
-    public Rectangle(Point topLeft, int sideA, int sideB) {
-        this.topLeft = topLeft;
+    public static String class_name = "Rectangle";
+
+    public Rectangle(Point location, int SideA, int SideB) {
+        super(location);
         setSideA(sideA);
         setSideB(sideB);
     }
 
-    public Rectangle(Point topLeft, int sideA) {
-        this.topLeft = topLeft;
-        setSideA(sideA);
-        setSideB(sideA);
-    }
-
-    public Point getTopLeft() {
-        return topLeft;
-    }
-
-    public void setTopLeft(Point topLeft) {
-        this.topLeft = topLeft;
-    }
 
     public int getSideA() {
         return sideA;
     }
 
     public void setSideA(int sideA) {
-        if (sideA < 0){
-            this.sideA = 0;
-            System.out.println("Side A can't be negative!!");
+        if (sideA <  0){
+            throw new IllegalArgumentException("Side A can't be negative! ! !");
         }
         else {
             this.sideA = sideA;
@@ -49,10 +41,21 @@ public class Rectangle {
             this.sideB = sideB;
         }
     }
-    public int perimeter(){
+    @Override
+    public double perimeter(){
         return 2 * (sideA + sideB);
     }
-    public int area(){
+    public double area(){
         return sideA * sideB;
+    }
+
+    @Override
+    public String toString() {
+        return "Rectangle{" +
+                "counterforobject=" + counterforobject +
+                "location=" + this.getLocation() +
+                ", sideA=" + this.sideA +
+                ", sideB=" + this.sideB +
+                '}';
     }
 }
